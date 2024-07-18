@@ -206,6 +206,6 @@ SESSION_COOKIE_AGE = 10800
 #
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
-
+CSRF_TRUSTED_ORIGINS = ['https://vdm.csceducation.net']
 # Site Default values
 AUTH_USER_MODEL = 'corecode.User'
