@@ -1,0 +1,15 @@
+<!-- add_student.html -->
+{% extends 'base.html' %}
+
+{% block content-header %}
+<h2 class="mb-4">Add Students to Batch</h2>
+{% endblock content-header %}
+
+{% block content %}
+<form method="post" action="{% url 'add_student' batch.id %}">
+  {% csrf_token %}
+  {{ add_student_form.as_p }}
+  <input type="submit" class="btn btn-primary" value="Add Students">
+</form>
+<a href="{% url 'batch_detail' batch.id %}" class="btn btn-secondary">Back to Batch Details</a>
+{% endblock content %}

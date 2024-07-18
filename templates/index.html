@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Content Row -->
+  <div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                          Total Students
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_student}}</div>
+                  </div>
+                  <div class="col-auto">
+                      <i class="fas fa-user fa-2x text-gray-300"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                        Total income
+                    </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_income}}</div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                              Total Paid
+                          </div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_paid}}</div>
+                      </div>
+                      <div class="col-auto">
+                          <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Earnings (Monthly) Card Example -->
+
+
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Balance</div>
+                          <div class="row no-gutters align-items-center">
+                              <div class="col-auto">
+                                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{total_balance}}</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Pending Requests Card Example -->
+
+  </div>
+
+<div class="container mt-2">
+  <h1 class="mb-4">Pending dues</h1>
+  <!-- Dues List -->
+  <div class="row">
+    {% for due in pending_dues %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    Student : {{due.invoice.student.student_name}} &nbsp;&nbsp; || &nbsp;&nbsp;&nbsp;&nbsp; Invoice #{{ due.invoice.id }} 
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Amount: ${{ due.amount }}</h5>
+                    <p class="card-text">Due Date: <span class="bg-danger rounded">&nbsp;&nbsp;{{ due.due_date }}&nbsp;&nbsp;</span></p>
+                    <p class="card-text">Extended: {{ due.extended }}</p>
+                    <small class="text-muted">Created at: {{ due.created_at }}</small>
+                    <div class="mt-3">
+                        <!-- Extend Form -->
+                        <form class="form-inline d-inline-block" method="POST" action="{% url 'extend_due' due.id %}">
+                            {% csrf_token %}
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="newDueDate" class="sr-only">New Due Date</label>
+                                <input type="date" class="form-control" id="newDueDate" name="new_due_date" required>
+                                <button type="submit" class="btn btn-warning m-2">Extend</button>
+                                <a href="/finance/bill/?due={{due.id}}" class="m-2 btn btn-info">Pay now
+                                </a>
+                            </div>
+                            
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+  <!-- Content Row -->
+
+</div>
+
+
+</div>
+<!-- /.container-fluid -->
+</div>
+{% endblock %}

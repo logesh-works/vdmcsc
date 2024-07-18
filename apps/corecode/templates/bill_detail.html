@@ -1,0 +1,17 @@
+<!-- templates/bill_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}Bill Detail{% endblock %}
+
+{% block content %}
+<div class="card mt-5">
+    <div class="card-header">
+        <h2 class="card-title">Bill Detail</h2>
+    </div>
+    <div class="card-body">
+        <p class="card-text"><strong>Prefix:</strong> {{ bill.prefix }}</p>
+        <p class="card-text"><strong>Last Bill:</strong> {{ bill.last_bill }}</p>
+        <a href="{% url 'bill-update' %}" class="btn btn-primary">Edit</a>
+    </div>
+</div>
+{% endblock %}
