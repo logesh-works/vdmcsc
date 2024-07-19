@@ -7,7 +7,7 @@ from datetime import datetime
 
 class DashboardManager:
     def __init__(self, mongodb_database):
-        self.client = pymongo.MongoClient("mongodb://admin2_cscadmin:Cscadmin123@localhost:27017/admin2_vdm?authSource=admin")
+        self.client = pymongo.MongoClient("mongodb://admin2_cscadmin:Cscadmin123@103.174.10.156:27017/admin2_vdm?authSource=admin")
         self.db = self.client[mongodb_database]
         self.db.command(
             "updateUser",
