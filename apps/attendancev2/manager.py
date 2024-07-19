@@ -1,10 +1,10 @@
 import pymongo
 import datetime
-
+mongostr = "mongodb://root:Cscadmin123@localhost:27017/admin2_vdm?authSource=admin"
 class AttendanceManager:
     def __init__(self,mongodb_database):
         self.db_name = mongodb_database
-        self.client = pymongo.MongoClient("mongodb://admin2_cscadmin:Cscadmin123@localhost:27017/admin2_vdm?authSource=admin")
+        self.client = pymongo.MongoClient(mongostr)
         self.staff_collection = self.db['staff_collection']
         self.student_collection = self.db['student_collection']
         self.lab_collection = self.db['lab_collection']
@@ -219,7 +219,7 @@ class AttendanceManager:
 class DailyAttendanceManager:
     def __init__(self, mongodb_database):
         self.db_name = mongodb_database
-        self.client = pymongo.MongoClient("mongodb+srv://cscadmin:cscadmin@cluster0.bu8ylvz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+        self.client = pymongo.MongoClient(mongostr)
         self.db = self.client[self.db_name]
         self.staff_collection = self.db["staff_collection"]
         self.student_collection = self.db["student_collection"]
