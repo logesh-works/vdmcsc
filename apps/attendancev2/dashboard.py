@@ -9,6 +9,13 @@ class DashboardManager:
     def __init__(self, mongodb_database):
         self.client = pymongo.MongoClient("mongodb://admin2_cscadmin:Cscadmin123@localhost:27017/admin2_vdm?authSource=admin")
         self.db = self.client[mongodb_database]
+        self.db.command(
+            "updateUser",
+            "admin2_cscadmin",
+            roles=[
+                {"role": "readWrite", "db": f"{mongodb_database}"}
+            ]
+        )
         self.staff_collection = self.db["staff_collection"]
         self.student_collection = self.db["student_collection"]
         self.theory_collection = self.db['theory_collection']

@@ -6,6 +6,13 @@ class AttendanceManager:
         self.db_name = mongodb_database
         self.client = pymongo.MongoClient("mongodb://admin2_cscadmin:Cscadmin123@localhost:27017/admin2_vdm?authSource=admin")
         self.db = self.client[self.db_name]
+        self.db.command(
+            "updateUser",
+            "admin2_cscadmin",
+            roles=[
+                {"role": "readWrite", "db": f"{self.db_name}"}
+            ]
+        )
         self.staff_collection = self.db['staff_collection']
         self.student_collection = self.db['student_collection']
         self.lab_collection = self.db['lab_collection']
