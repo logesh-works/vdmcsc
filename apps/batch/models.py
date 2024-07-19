@@ -39,7 +39,7 @@ class BatchModel(models.Model):
         ordering = ["-batch_start_date"]
 
     def initialize_batch_attendance(self, date, content, entry_time, exit_time):
-        manager = AttendanceManager("anr_collections")
+        manager = AttendanceManager("admin2_vdm")
         manager.initialize_batch(self.id, date, content, entry_time, exit_time, self.get_students())
 
     def get_students(self):
@@ -54,12 +54,12 @@ class BatchModel(models.Model):
         return student.student_name
 
     def add_theory_attendance(self, content,entry_time,exit_time,student, status, date):
-        manager = AttendanceManager("anr_collections")
+        manager = AttendanceManager("admin2_vdm")
         manager.add_theory_attendance(self.id, student, date, status,content,entry_time,exit_time)
         
     
     def get_attendance_data(self, date):
-        manager = AttendanceManager("anr_collections")
+        manager = AttendanceManager("admin2_vdm")
         doc = manager.get_theory_data(self.id, date)
         for enrol_no, status in doc['students'].items():
             doc['students'][enrol_no] = {
@@ -70,7 +70,7 @@ class BatchModel(models.Model):
         return doc
 
     def finished_topics(self):
-        manager = AttendanceManager("anr_collections")
+        manager = AttendanceManager("admin2_vdm")
         doc = manager.get_all_theory_data(self.id)
         finished = []
         #print(doc)

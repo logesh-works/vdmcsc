@@ -29,7 +29,7 @@ class LabSystemModel(models.Model):
         self.save()
 
     def get_attendance_data(self,date):
-        manager = AttendanceManager("anr_collections")
+        manager = AttendanceManager("admin2_vdm")
         result = {}
         for system in self.get_systems():
             result[system] = manager.get_lab_data(self.id,system,date)

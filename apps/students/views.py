@@ -606,8 +606,8 @@ def attendance_test(request,**kwargs):
     student_id = kwargs.get('pk')
     student = Student.objects.get(id=student_id)
     batches = BatchModel.objects.filter(batch_students__id=student.id)
-    manager = DashboardManager('anr_collections')
-    lab_manager = AttendanceManager("anr_collections")
+    manager = DashboardManager('admin2_vdm')
+    lab_manager = AttendanceManager("admin2_vdm")
     lab_data = lab_manager.get_public_student_lab_data(student.enrol_no)
     data = {}
     for batch in batches:
