@@ -62,7 +62,7 @@ def generate_student_id_card(request,student_id):
     background_color = 'rgb(255, 0, 0)'  # red color
     draw.rectangle([(0, 0), (1000, 150)], fill='red')
     (x, y) = (300, 50)
-    logo_path = os.path.join(settings.BASE_DIR, "static\\dist\\img\\logoid.jpg")
+    logo_path = os.path.join(settings.BASE_DIR, "static/dist/img/logoid.jpg")
     logo = Image.open(logo_path)
     logo = logo.resize((150, 120))  # Resize the logo as needed
     image.paste(logo, (100, 25))  # Paste the logo at the desired location
@@ -109,7 +109,7 @@ def generate_student_id_card(request,student_id):
 
 
     # Save the edited image
-    image_path = os.path.join(settings.BASE_DIR, "media\\idcards", f"student_id_card_{student_id}.png")
+    image_path = os.path.join(settings.BASE_DIR, "media/idcards", f"student_id_card_{student_id}.png")
     image.save(image_path)
 
     # Generate QR code
@@ -124,7 +124,7 @@ def generate_student_id_card(request,student_id):
     qr.make(fit=True)
     qr_image = qr.make_image(fill_color="black", back_color="white")
 
-    qr_path = os.path.join('media\\qrcodes', f'qr_code{student_id}.png')
+    qr_path = os.path.join('media/qrcodes', f'qr_code{student_id}.png')
     qr_image.save(qr_path)
 
     # Paste QR code onto the ID card
