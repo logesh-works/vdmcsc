@@ -49,9 +49,10 @@ def generate_student_id_card(request,student_id):
 
 # Get the path of the system font
 
-
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    font_path = os.path.join(base_dir, 'static/dist/css/arial.ttf')
     # Use the system font for ImageFont
-    font = ImageFont.load_default()
+    font = ImageFont.truetype(font_path, size=45)
 
 
     d_date = datetime.datetime.now()
@@ -62,7 +63,11 @@ def generate_student_id_card(request,student_id):
     background_color = 'rgb(255, 0, 0)'  # red color
     draw.rectangle([(0, 0), (1000, 150)], fill='red')
     (x, y) = (300, 50)
-    company = "Vriddhachalam CSC"
+    logo_path = os.path.join(settings.BASE_DIR, "static/dist/img/logoid.jpg")
+    logo = Image.open(logo_path)
+    logo = logo.resize((150, 120))  # Resize the logo as needed
+    image.paste(logo, (100, 25))  # Paste the logo at the desired location
+    company = "Virudhachalam CSC"
     color = 'rgb(0, 0, 0)' # black color
     draw.text((x, y), company, fill=text_color, font=font)
 
