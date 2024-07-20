@@ -86,6 +86,7 @@
             </label>
             <div class="col">
               <a href="{%  url 'public_student_profile'  object.id %}"><input type="button" class="btn btn-sm btn-primary" value="Link"></a>
+              <a href="{% url 'generate_student_id_card' object.id %}"><input type="button" class="btn btn-sm btn-primary" value="ID card"></a>
             </div>
           </div>
           <div class="form-group border-bottom row">
