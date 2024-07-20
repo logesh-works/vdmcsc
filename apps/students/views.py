@@ -51,7 +51,7 @@ def generate_student_id_card(request,student_id):
 
 
     # Use the system font for ImageFont
-    font = ImageFont.truetype('arial.ttf', size=45)
+    font = ImageFont.load_default()
 
 
     d_date = datetime.datetime.now()
