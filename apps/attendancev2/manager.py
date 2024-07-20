@@ -5,6 +5,7 @@ class AttendanceManager:
     def __init__(self,mongodb_database):
         self.db_name = mongodb_database
         self.client = pymongo.MongoClient(mongostr)
+        self.db = self.client[self.db_name]
         self.staff_collection = self.db['staff_collection']
         self.student_collection = self.db['student_collection']
         self.lab_collection = self.db['lab_collection']
