@@ -49,8 +49,7 @@ def generate_student_id_card(request,student_id):
 
 # Get the path of the system font
 
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    font_path = os.path.join(base_dir, 'static/dist/css/arial.ttf')
+    font_path = os.path.join(settings.BASE_DIR, 'static/dist/css/arial.ttf')
     # Use the system font for ImageFont
     font = ImageFont.truetype(font_path, size=45)
 
