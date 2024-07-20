@@ -62,11 +62,7 @@ def generate_student_id_card(request,student_id):
     background_color = 'rgb(255, 0, 0)'  # red color
     draw.rectangle([(0, 0), (1000, 150)], fill='red')
     (x, y) = (300, 50)
-    logo_path = os.path.join(settings.BASE_DIR, "static/dist/img/logoid.jpg")
-    logo = Image.open(logo_path)
-    logo = logo.resize((150, 120))  # Resize the logo as needed
-    image.paste(logo, (100, 25))  # Paste the logo at the desired location
-    company = "Virudhachalam CSC"
+    company = "Vriddhachalam CSC"
     color = 'rgb(0, 0, 0)' # black color
     draw.text((x, y), company, fill=text_color, font=font)
 
